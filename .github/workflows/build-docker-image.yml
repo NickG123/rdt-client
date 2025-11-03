@@ -11,7 +11,7 @@ permissions:
 env:
   APP_NAME: rdtclient
   DOCKER_FILE: ./Dockerfile
-  ENABLE_DOCKERHUB: 1
+  ENABLE_DOCKERHUB: 0
   ENABLE_GHCR: 1
 
 concurrency: ${{ github.sha }}
@@ -73,7 +73,7 @@ jobs:
         with:
           context: .
           labels: ${{ steps.meta.outputs.labels }}
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.APP_NAME }}
+          tags: ghcr.io/nickg123/${{ env.APP_NAME }}
           outputs: type=image,push-by-digest=true,name-canonical=true,push=true
 
       - name: Export digest
